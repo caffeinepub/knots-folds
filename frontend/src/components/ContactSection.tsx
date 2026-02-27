@@ -1,5 +1,6 @@
 import ContactForm from './ContactForm';
 import { Mail } from 'lucide-react';
+import { SiInstagram } from 'react-icons/si';
 
 export default function ContactSection() {
   return (
@@ -45,6 +46,24 @@ export default function ContactSection() {
                   className="font-sans text-sm text-rose hover:text-rose-dark transition-colors underline underline-offset-2"
                 >
                   vanshita310@gmail.com
+                </a>
+              </div>
+            </div>
+
+            {/* Instagram Card */}
+            <div className="flex items-center gap-4 p-5 rounded-2xl bg-violet/10 border border-violet/25 hover:border-violet/40 transition-colors duration-200">
+              <div className="w-12 h-12 rounded-full bg-violet/20 flex items-center justify-center shrink-0">
+                <SiInstagram className="w-5 h-5 text-violet" />
+              </div>
+              <div>
+                <p className="font-sans font-bold text-sm text-plum mb-0.5">Follow Us on Instagram</p>
+                <a
+                  href="https://www.instagram.com/knotsnfolds._/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-sans text-sm text-violet hover:text-plum transition-colors underline underline-offset-2"
+                >
+                  @knotsnfolds._
                 </a>
               </div>
             </div>

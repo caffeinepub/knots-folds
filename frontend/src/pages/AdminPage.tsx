@@ -1,24 +1,35 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import AdminLoginForm from '../components/AdminLoginForm';
 import AdminDashboard from '../components/AdminDashboard';
 
 const ADMIN_AUTH_KEY = 'kf_admin_authenticated';
 
-export default function AdminPage() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+function isAdminAuthenticated(): boolean {
+  try {
+    return sessionStorage.getItem(ADMIN_AUTH_KEY) === 'true';
+  } catch {
+    return false;
+  }
+}
 
-  useEffect(() => {
-    const stored = sessionStorage.getItem(ADMIN_AUTH_KEY);
-    if (stored === 'true') setIsAuthenticated(true);
-  }, []);
+export default function AdminPage() {
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(isAdminAuthenticated);
 
   const handleLogin = () => {
-    sessionStorage.setItem(ADMIN_AUTH_KEY, 'true');
+    try {
+      sessionStorage.setItem(ADMIN_AUTH_KEY, 'true');
+    } catch {
+      // sessionStorage may be unavailable in some environments
+    }
     setIsAuthenticated(true);
   };
 
   const handleLogout = () => {
-    sessionStorage.removeItem(ADMIN_AUTH_KEY);
+    try {
+      sessionStorage.removeItem(ADMIN_AUTH_KEY);
+    } catch {
+      // sessionStorage may be unavailable in some environments
+    }
     setIsAuthenticated(false);
   };
 

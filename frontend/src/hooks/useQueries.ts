@@ -68,7 +68,7 @@ export function useAddProduct() {
       category: string;
     }) => {
       if (!actor) throw new Error('Backend not available');
-      return actor.addProduct(name, description, price, stockQuantity, imageUrl, category);
+      return actor.createProduct(name, description, price, stockQuantity, imageUrl, category);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['products'] });

@@ -73,12 +73,12 @@ export interface _SERVICE {
   >,
   '_caffeineStorageUpdateGatewayPrincipals' : ActorMethod<[], undefined>,
   '_initializeAccessControlWithSecret' : ActorMethod<[string], undefined>,
-  'addProduct' : ActorMethod<
-    [string, string, number, bigint, string, string],
-    bigint
-  >,
   'assignCallerUserRole' : ActorMethod<[Principal, UserRole], undefined>,
   'assignRole' : ActorMethod<[Principal, UserRole], undefined>,
+  'createProduct' : ActorMethod<
+    [string, string, number, bigint, string, string],
+    { 'id' : bigint }
+  >,
   'deleteContactMessage' : ActorMethod<[bigint], undefined>,
   'deleteProduct' : ActorMethod<[bigint], undefined>,
   'getAllContactMessages' : ActorMethod<[], Array<ContactMessage>>,

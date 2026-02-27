@@ -150,9 +150,11 @@ export interface backendInterface {
     _caffeineStorageRefillCashier(refillInformation: _CaffeineStorageRefillInformation | null): Promise<_CaffeineStorageRefillResult>;
     _caffeineStorageUpdateGatewayPrincipals(): Promise<void>;
     _initializeAccessControlWithSecret(userSecret: string): Promise<void>;
-    addProduct(name: string, description: string, price: number, stockQuantity: bigint, imageUrl: string, category: string): Promise<bigint>;
     assignCallerUserRole(user: Principal, role: UserRole): Promise<void>;
     assignRole(user: Principal, role: UserRole): Promise<void>;
+    createProduct(name: string, description: string, price: number, stockQuantity: bigint, imageUrl: string, category: string): Promise<{
+        id: bigint;
+    }>;
     deleteContactMessage(msgId: bigint): Promise<void>;
     deleteProduct(productId: bigint): Promise<void>;
     getAllContactMessages(): Promise<Array<ContactMessage>>;
@@ -274,20 +276,6 @@ export class Backend implements backendInterface {
             return result;
         }
     }
-    async addProduct(arg0: string, arg1: string, arg2: number, arg3: bigint, arg4: string, arg5: string): Promise<bigint> {
-        if (this.processError) {
-            try {
-                const result = await this.actor.addProduct(arg0, arg1, arg2, arg3, arg4, arg5);
-                return result;
-            } catch (e) {
-                this.processError(e);
-                throw new Error("unreachable");
-            }
-        } else {
-            const result = await this.actor.addProduct(arg0, arg1, arg2, arg3, arg4, arg5);
-            return result;
-        }
-    }
     async assignCallerUserRole(arg0: Principal, arg1: UserRole): Promise<void> {
         if (this.processError) {
             try {
@@ -313,6 +301,22 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.assignRole(arg0, to_candid_UserRole_n8(this._uploadFile, this._downloadFile, arg1));
+            return result;
+        }
+    }
+    async createProduct(arg0: string, arg1: string, arg2: number, arg3: bigint, arg4: string, arg5: string): Promise<{
+        id: bigint;
+    }> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.createProduct(arg0, arg1, arg2, arg3, arg4, arg5);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.createProduct(arg0, arg1, arg2, arg3, arg4, arg5);
             return result;
         }
     }

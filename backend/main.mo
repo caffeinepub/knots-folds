@@ -14,9 +14,6 @@ import Storage "blob-storage/Storage";
 import MixinAuthorization "authorization/MixinAuthorization";
 import AccessControl "authorization/access-control";
 
-import Migration "migration";
-
-(with migration = Migration.run)
 actor {
   include MixinStorage();
 
@@ -115,7 +112,9 @@ actor {
   };
 
   // Product CRUD
-  public shared ({ caller }) func addProduct(name : Text, description : Text, price : Float, stockQuantity : Nat, imageUrl : Text, category : Text) : async Nat {
+  public shared ({ caller }) func createProduct(name : Text, description : Text, price : Float, stockQuantity : Nat, imageUrl : Text, category : Text) : async {
+    id : Nat;
+  } {
     if (not AccessControl.isAdmin(accessControlState, caller)) {
       Runtime.trap("Unauthorized: Only admins can add products");
     };
@@ -131,7 +130,7 @@ actor {
 
     products.add(nextProductId, product);
     nextProductId += 1;
-    product.id;
+    { id = product.id };
   };
 
   public query ({ caller }) func getProduct(productId : Nat) : async Product {

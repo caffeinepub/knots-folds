@@ -90,13 +90,13 @@ export const idlService = IDL.Service({
     ),
   '_caffeineStorageUpdateGatewayPrincipals' : IDL.Func([], [], []),
   '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
-  'addProduct' : IDL.Func(
-      [IDL.Text, IDL.Text, IDL.Float64, IDL.Nat, IDL.Text, IDL.Text],
-      [IDL.Nat],
-      [],
-    ),
   'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
   'assignRole' : IDL.Func([IDL.Principal, UserRole], [], []),
+  'createProduct' : IDL.Func(
+      [IDL.Text, IDL.Text, IDL.Float64, IDL.Nat, IDL.Text, IDL.Text],
+      [IDL.Record({ 'id' : IDL.Nat })],
+      [],
+    ),
   'deleteContactMessage' : IDL.Func([IDL.Nat], [], []),
   'deleteProduct' : IDL.Func([IDL.Nat], [], []),
   'getAllContactMessages' : IDL.Func([], [IDL.Vec(ContactMessage)], ['query']),
@@ -216,13 +216,13 @@ export const idlFactory = ({ IDL }) => {
       ),
     '_caffeineStorageUpdateGatewayPrincipals' : IDL.Func([], [], []),
     '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
-    'addProduct' : IDL.Func(
-        [IDL.Text, IDL.Text, IDL.Float64, IDL.Nat, IDL.Text, IDL.Text],
-        [IDL.Nat],
-        [],
-      ),
     'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
     'assignRole' : IDL.Func([IDL.Principal, UserRole], [], []),
+    'createProduct' : IDL.Func(
+        [IDL.Text, IDL.Text, IDL.Float64, IDL.Nat, IDL.Text, IDL.Text],
+        [IDL.Record({ 'id' : IDL.Nat })],
+        [],
+      ),
     'deleteContactMessage' : IDL.Func([IDL.Nat], [], []),
     'deleteProduct' : IDL.Func([IDL.Nat], [], []),
     'getAllContactMessages' : IDL.Func(

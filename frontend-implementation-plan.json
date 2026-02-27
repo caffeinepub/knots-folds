@@ -1,121 +1,51 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Interactive Order System, Admin Panel & Customer Feedback",
+  "title": "Remove password display, change password to namita6565, fix Add Product",
   "requirements": [
     {
-      "id": "REQ-9",
-      "summary": "Add interactive order placement system with customer form for name, phone, address, product selection, and quantity",
+      "id": "REQ-22",
+      "summary": "Update AdminLoginForm to remove visible password display and change hardcoded password to 'namita6565'",
       "acceptanceCriteria": [
-        "An order form is accessible from the product showcase section (e.g., via 'Place Order' button on each ProductCard or a dedicated section).",
-        "The form collects: customer name, phone number, delivery address, product name/selection, and quantity.",
-        "Submitted orders are persisted in the backend with a unique ID, timestamp, and 'Pending' status.",
-        "The customer sees a success confirmation after placing an order.",
-        "The form validates required fields before submission."
+        "The AdminLoginForm screen does not show the admin password in any visible label, badge, or info box.",
+        "Entering 'namita6565' in the password field and clicking Login grants access to the AdminDashboard.",
+        "Entering any other password shows an inline error message.",
+        "The step-by-step guide panel (how to navigate to /admin, enter password, use tabs) remains visible on the login screen.",
+        "Session is persisted via sessionStorage key 'adminAuthenticated' set to 'true' on successful login."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/OrderForm.tsx",
-          "operation": "create",
-          "description": "Create a validated order form component with fields for customer name, phone number, delivery address, product selection (dropdown of available products), and quantity. Include form validation for required fields. On successful submission, call the backend placeOrder method and display a success confirmation message. Style the form consistently with the existing pink/purple theme using Tailwind classes and shadcn-ui form components."
-        },
-        {
-          "path": "frontend/src/components/ProductCard.tsx",
+          "path": "frontend/src/components/AdminLoginForm.tsx",
           "operation": "modify",
-          "description": "Add a 'Place Order' button to each ProductCard that triggers the order form. Pass the product information (id, name) to the OrderForm component when the button is clicked. Ensure the button styling matches the existing pink/purple theme and integrates smoothly with the card's hover animations."
-        },
-        {
-          "path": "frontend/src/hooks/useQueries.ts",
-          "operation": "modify",
-          "description": "Add usePlaceOrder mutation hook that calls actor.placeOrder with customer name, phone, address, productId, and quantity. Invalidate the orders query on success to ensure admin panel shows updated data. Add useGetAllProducts query hook to fetch the product list for the order form dropdown."
-        },
-        {
-          "path": "frontend/src/components/ProductShowcase.tsx",
-          "operation": "modify",
-          "description": "Update ProductShowcase to pass product data (including product id) to each ProductCard so the 'Place Order' button can reference the correct product when opening the order form."
+          "description": "Remove all visible password display elements (any 'Admin Password: ...' label, info box, or badge showing the password). Change the hardcoded password check from 'knots2024' to 'namita6565'. Retain the password input field, login button, error handling, and the step-by-step guide panel. Ensure sessionStorage 'adminAuthenticated' is set to 'true' on successful login."
         }
       ]
     },
     {
-      "id": "REQ-10",
-      "summary": "Build password-protected admin panel at /admin with product management, order status updates, and feedback viewing",
+      "id": "REQ-23",
+      "summary": "Fix Add Product functionality in admin dashboard to correctly create and save new products",
       "acceptanceCriteria": [
-        "Navigating to /admin shows a password entry screen; correct password grants access, wrong password shows an error.",
-        "Admin panel has tabbed or sectioned navigation: Products, Orders, Feedback.",
-        "Products tab: displays list of all products with options to add a new product, edit existing product fields (name, description, price, stock, image, category), and delete a product.",
-        "Orders tab: lists all customer orders with customer details, product, quantity, timestamp, and a dropdown/button to update the order status.",
-        "Feedback tab: lists all customer feedback/contact messages with sender name, email, message, and timestamp.",
-        "Admin session persists for the browser session (e.g., via localStorage flag) so the admin does not need to re-enter the password on page refresh.",
-        "The admin panel is not linked from the public-facing navigation."
+        "Opening the 'Add Product' modal in the Products tab, filling in all required fields (name, description, price, stock, image URL, category), and submitting successfully saves the product.",
+        "The new product appears in the products table immediately after creation without a full page reload.",
+        "No console errors occur during product creation.",
+        "The backend correctly stores the new product and returns it in subsequent getProducts calls.",
+        "Editing and deleting existing products continue to work correctly."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/AdminPage.tsx",
-          "operation": "create",
-          "description": "Create the main AdminPage component that checks for admin authentication via a localStorage flag. If not authenticated, render the AdminLoginForm. If authenticated, render the AdminDashboard with tabbed sections for Products, Orders, and Feedback. Use shadcn-ui Tabs component for navigation. Style consistently with the pink/purple theme."
-        },
-        {
-          "path": "frontend/src/components/AdminLoginForm.tsx",
-          "operation": "create",
-          "description": "Create a password entry form component for admin access. Use a hardcoded password check (e.g., 'admin123'). On correct password, set a localStorage flag ('isAdminAuthenticated') and redirect to the admin dashboard. On incorrect password, display an error message. Style with pink/purple theme using shadcn-ui Input and Button components."
-        },
-        {
-          "path": "frontend/src/components/AdminDashboard.tsx",
-          "operation": "create",
-          "description": "Create the main admin dashboard component with three tabs: Products, Orders, and Feedback. Use shadcn-ui Tabs component. Each tab renders its respective management component (ProductsTab, OrdersTab, FeedbackTab). Include a logout button that clears the localStorage admin flag and redirects to the login screen. Style with the pink/purple theme."
-        },
-        {
-          "path": "frontend/src/components/ProductsTab.tsx",
-          "operation": "create",
-          "description": "Create the Products management tab that displays a list/table of all products (using useGetAllProducts hook). Include action buttons for each product to edit or delete. Include an 'Add New Product' button that opens a product form modal. Use shadcn-ui Table, Button, and Dialog components. Style with pink/purple theme. Verify the blob-storage component's usage instructions before implementing image URL handling."
-        },
-        {
-          "path": "frontend/src/components/OrdersTab.tsx",
-          "operation": "create",
-          "description": "Create the Orders management tab that displays a list/table of all customer orders (using useGetAllOrders hook). Show customer name, phone, address, product name, quantity, status, and timestamp for each order. Include a status dropdown (Pending, Processing, Shipped, Delivered, Cancelled) for each order that calls updateOrderStatus mutation on change. Use shadcn-ui Table and Select components. Style with pink/purple theme."
-        },
-        {
-          "path": "frontend/src/components/FeedbackTab.tsx",
-          "operation": "create",
-          "description": "Create the Feedback management tab that displays a list/table of all customer feedback messages (using useGetAllContactMessages hook). Show sender name, email, message text, and timestamp for each entry. Use shadcn-ui Table component. Style with pink/purple theme."
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Investigate and fix the createProduct mutation. Ensure it correctly calls actor.createProduct with all required parameters (name, description, price, stockQuantity as bigint, imageUrl, category). Verify the mutation's onSuccess callback invalidates the products query cache to trigger a refetch. Check that BigInt conversions for price and stockQuantity are handled correctly. Review the backend interface at frontend/src/backend.d.ts to confirm method signature matches: createProduct(name: string, description: string, price: number, stockQuantity: bigint, imageUrl: string, category: string): Promise<{id: bigint}>."
         },
         {
           "path": "frontend/src/components/ProductFormModal.tsx",
-          "operation": "create",
-          "description": "Create a reusable modal component for adding/editing products. Include fields for name, description, price, stock quantity, image URL, and category. Use controlled form inputs with validation. On submit, call either addProduct or updateProduct mutation depending on whether editing an existing product or creating a new one. Use shadcn-ui Dialog, Input, Textarea, and Button components. Style with pink/purple theme. Verify the blob-storage component's usage instructions before implementing image URL handling."
+          "operation": "modify",
+          "description": "Review and fix the form submission logic. Ensure all form fields (name, description, price, stock, imageUrl, category) are collected correctly and passed to the createProduct mutation from useQueries. Verify that numeric fields (price, stock) are properly validated and converted to the correct types (price as number, stock as bigint). Check that the modal closes and shows success feedback after successful product creation. Ensure form reset after submission."
         },
         {
-          "path": "frontend/src/App.tsx",
+          "path": "frontend/src/components/ProductsTab.tsx",
           "operation": "modify",
-          "description": "Add React Router and configure routes for the existing HomePage (path '/') and the new AdminPage (path '/admin'). Wrap the existing App layout with BrowserRouter and Routes. Ensure the Header and Footer remain visible on all routes. Install react-router-dom if not already present."
-        },
-        {
-          "path": "frontend/src/hooks/useQueries.ts",
-          "operation": "modify",
-          "description": "Add query and mutation hooks for admin operations: useGetAllProducts, useAddProduct, useUpdateProduct, useDeleteProduct, useGetAllOrders, useUpdateOrderStatus, useGetAllContactMessages. Each mutation should invalidate relevant queries on success (e.g., addProduct invalidates products query)."
-        }
-      ]
-    },
-    {
-      "id": "REQ-11",
-      "summary": "Replace contact form purpose with dual-purpose Customer Feedback & Contact form, display vanshita310@gmail.com prominently",
-      "acceptanceCriteria": [
-        "The ContactSection/ContactForm collects name, email, and message fields and labels the form as 'Leave Feedback' or 'Send Us a Message'.",
-        "Submitted feedback messages are stored in the backend with sender name, email, message text, and timestamp.",
-        "The ContactSection displays vanshita310@gmail.com as the business contact email.",
-        "All submitted feedback messages appear in the admin panel's Feedback tab.",
-        "The existing backend submitContactForm method (or an equivalent) is used or extended to store feedback."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/ContactForm.tsx",
-          "operation": "modify",
-          "description": "Update the form heading/label to 'Leave Feedback' or 'Send Us a Message' to reflect the dual-purpose nature. Ensure the form continues to collect name, email, and message fields and calls the existing submitContactForm backend method. The success confirmation should acknowledge feedback submission."
-        },
-        {
-          "path": "frontend/src/components/ContactSection.tsx",
-          "operation": "modify",
-          "description": "Add a prominent display of the contact email vanshita310@gmail.com in the ContactSection. Position it near the form or in an info card, styled with the pink/purple theme. Ensure it is easily visible and formatted as a mailto link for user convenience."
+          "description": "Verify that the ProductsTab correctly opens the ProductFormModal in 'add' mode when the 'Add Product' button is clicked. Ensure the products query refetches after the modal signals successful product creation. Check that the products table properly displays newly created products without requiring a page reload. Review error handling for failed product creation attempts."
         }
       ]
     }

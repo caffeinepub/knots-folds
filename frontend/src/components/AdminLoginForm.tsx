@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
-import { Lock } from 'lucide-react';
+import { Lock, CheckCircle2, Eye, EyeOff } from 'lucide-react';
 
-const ADMIN_PASSWORD = 'knotsandfolds2024';
+const ADMIN_PASSWORD = 'namita6565';
 
 interface AdminLoginFormProps {
   onLogin: () => void;
@@ -13,15 +13,11 @@ interface AdminLoginFormProps {
 export default function AdminLoginForm({ onLogin }: AdminLoginFormProps) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [isChecking, setIsChecking] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsChecking(true);
     setError('');
-
-    // Simulate a brief check
-    await new Promise(r => setTimeout(r, 400));
 
     if (password === ADMIN_PASSWORD) {
       onLogin();
@@ -29,12 +25,13 @@ export default function AdminLoginForm({ onLogin }: AdminLoginFormProps) {
       setError('Incorrect password. Please try again.');
       setPassword('');
     }
-    setIsChecking(false);
   };
 
   return (
-    <div className="flex items-center justify-center min-h-[calc(100vh-10rem)] px-4">
-      <div className="w-full max-w-sm">
+    <div className="flex items-center justify-center min-h-[calc(100vh-10rem)] px-4 py-10">
+      <div className="w-full max-w-lg space-y-6">
+
+        {/* Login Form */}
         <div className="bg-card rounded-3xl p-8 shadow-warm border border-lavender/60">
           {/* Header */}
           <div className="text-center mb-8">
@@ -42,7 +39,7 @@ export default function AdminLoginForm({ onLogin }: AdminLoginFormProps) {
               <Lock className="w-7 h-7 text-rose" />
             </div>
             <h1 className="font-serif text-2xl font-bold text-plum">Admin Panel</h1>
-            <p className="font-sans text-sm text-muted-foreground mt-1">Knots & Folds — Store Management</p>
+            <p className="font-sans text-sm text-muted-foreground mt-1">Knots &amp; Folds — Store Management</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-5">
@@ -50,42 +47,67 @@ export default function AdminLoginForm({ onLogin }: AdminLoginFormProps) {
               <Label htmlFor="admin-password" className="font-sans text-sm font-bold text-plum">
                 Password
               </Label>
-              <Input
-                id="admin-password"
-                type="password"
-                placeholder="Enter admin password"
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                  if (error) setError('');
-                }}
-                className={`bg-blush border-lavender focus:border-rose font-sans ${error ? 'border-destructive' : ''}`}
-                autoFocus
-              />
+              <div className="relative">
+                <Input
+                  id="admin-password"
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="Enter admin password"
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    if (error) setError('');
+                  }}
+                  className={`bg-blush border-lavender focus:border-rose font-sans pr-10 ${error ? 'border-destructive' : ''}`}
+                  autoFocus
+                  autoComplete="current-password"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((v) => !v)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-plum transition-colors"
+                  tabIndex={-1}
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                >
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
+              </div>
               {error && (
-                <p className="font-sans text-xs text-destructive">{error}</p>
+                <p className="font-sans text-xs text-destructive font-medium">{error}</p>
               )}
             </div>
 
             <Button
               type="submit"
-              disabled={isChecking || !password}
+              disabled={!password.trim()}
               className="w-full bg-rose hover:bg-rose-dark text-primary-foreground font-sans font-bold rounded-full shadow-warm"
             >
-              {isChecking ? (
-                <span className="flex items-center justify-center gap-2">
-                  <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                  </svg>
-                  Verifying...
-                </span>
-              ) : (
-                'Enter Admin Panel'
-              )}
+              Enter Admin Panel
             </Button>
           </form>
         </div>
+
+        {/* Step-by-step Guide */}
+        <div className="bg-lavender/30 border border-lavender rounded-2xl p-5">
+          <div className="flex items-center gap-2 mb-4">
+            <CheckCircle2 className="w-5 h-5 text-violet shrink-0" />
+            <p className="font-sans font-bold text-sm text-plum">How to Access the Admin Panel</p>
+          </div>
+          <ol className="space-y-3">
+            {[
+              { step: '1', text: 'Navigate to your site URL and add /admin at the end (e.g. yoursite.com/admin).' },
+              { step: '2', text: 'Enter the admin password in the field above and click "Enter Admin Panel".' },
+              { step: '3', text: 'Use the tabs inside to manage Products, Orders, and Customer Feedback.' },
+            ].map(({ step, text }) => (
+              <li key={step} className="flex items-start gap-3">
+                <span className="w-6 h-6 rounded-full bg-rose/20 text-rose font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+                  {step}
+                </span>
+                <p className="font-sans text-sm text-plum-light leading-relaxed">{text}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+
       </div>
     </div>
   );

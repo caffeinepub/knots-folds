@@ -22,7 +22,7 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
           />
           <div>
             <h1 className="font-serif text-2xl font-bold text-plum">Admin Dashboard</h1>
-            <p className="font-sans text-xs text-muted-foreground">Knots & Folds — Store Management</p>
+            <p className="font-sans text-xs text-muted-foreground">Knots &amp; Folds — Store Management</p>
           </div>
         </div>
         <Button

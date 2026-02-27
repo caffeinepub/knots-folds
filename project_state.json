@@ -1,16 +1,20 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 7,
-  "summary": "A website for 'Knots & Folds', a woolen goods brand (toys, headbands, etc.) belonging to the user's grandmother. The site includes the user's own logo, showcases woolen products with a pink and purple color scheme, and now features an interactive order system, password-protected admin panel (for managing products/prices/stock/orders/feedback), a customer feedback/message form, and the contact email vanshita310@gmail.com.",
+  "projectStateVersion": 17,
+  "summary": "A website for 'Knots & Folds', a woolen goods brand (toys, headbands, etc.) belonging to the user's grandmother. The site includes the user's own logo, showcases woolen products with a pink and purple color scheme, and now features an interactive order system, password-protected admin panel (password: namita6565, no visible password display) for managing products/prices/stock/orders/feedback, a customer feedback/message form, and the contact email vanshita310@gmail.com.",
   "architectural_notes": [
     "Static website (HTML/CSS/JS) for a small handmade woolen goods brand",
     "Brand name: Knots & Folds; product categories include woolen toys, headbands, and similar items",
     "User has provided their own logo asset — do not use AI-generated logo; use uploaded logo file instead",
     "Backend required for order management, product/stock CRUD, and customer feedback storage",
-    "Admin panel is password-protected; manages products, prices, stock, orders, and feedback messages"
+    "Admin panel is password-protected; manages products, prices, stock, orders, and feedback messages",
+    "App uses hash-based routing (e.g., /#/admin) — all route handling must account for this",
+    "Admin panel password is 'namita6565' — do NOT display it visibly on the login screen"
   ],
-  "known_issues": [],
-  "isFixRequest": false,
+  "known_issues": [
+    "Add Product functionality in admin dashboard is broken — products cannot be created/saved"
+  ],
+  "isFixRequest": true,
   "existing_features": [
     {
       "id": "feature-create-a-warm-handcrafted-visual-theme-for-the-entire-site-using-earthy-tones-cream-warm-beige-terracotta-deep-forest-green-soft-serif-typography-and-cozy-texture-inspired-layouts-that-evokes-handmade-woolen-craftsmanship-apply-this-theme-consistently-across-all-pages-and-components",
@@ -99,6 +103,94 @@
         "REQ-11"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-fix-the-admin-panel-login-in-adminloginform-tsx-so-it-uses-a-simple-known-hardcoded-password-e-g-knots2024-the-password-must-be-clearly-displayed-on-the-login-screen-itself-with-a-label-such-as-admin-password-knots2024-so-the-site-owner-can-always-find-it-the-login-must-actually-work-submitting-the-correct-password-must-grant-access-to-the-admindashboard-and-persist-the-session-via-sessionstorage-as-already-used-in-adminpage-tsx",
+      "title": "Fix the admin panel login in AdminLoginForm.tsx so it uses a simple, known hardcoded password (e.g., 'knots2024'). The password must be clearly displayed on the login screen itself with a label such as 'Admin Password: knots2024' so the site owner can always find it. The login must actually work — submitting the correct password must grant access to the AdminDashboard and persist the session via sessionStorage (as already used in AdminPage.tsx).",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-step-by-step-guide-panel-on-the-adminloginform-screen-that-explains-how-to-access-the-admin-panel-1-go-to-your-site-url-and-add-admin-at-the-end-2-enter-the-admin-password-shown-on-this-page-3-click-login-4-use-the-tabs-to-manage-products-orders-and-feedback-display-this-guide-in-a-clearly-visible-info-box-below-or-beside-the-login-form",
+      "title": "Add a step-by-step guide panel on the AdminLoginForm screen that explains how to access the admin panel: (1) Go to your site URL and add /admin at the end; (2) Enter the admin password shown on this page; (3) Click 'Login'; (4) Use the tabs to manage Products, Orders, and Feedback. Display this guide in a clearly visible info box below or beside the login form.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-admin-panel-login-in-adminloginform-tsx-so-it-uses-the-hardcoded-password-knots2024-display-the-password-prominently-on-the-login-screen-with-a-label-such-as-admin-password-knots2024-submitting-the-correct-password-must-grant-access-to-the-admindashboard-and-persist-the-session-via-sessionstorage",
+      "title": "Fix the admin panel login in AdminLoginForm.tsx so it uses the hardcoded password 'knots2024'. Display the password prominently on the login screen with a label such as 'Admin Password: knots2024'. Submitting the correct password must grant access to the AdminDashboard and persist the session via sessionStorage.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-step-by-step-guide-panel-on-the-adminloginform-screen-explaining-how-to-access-the-admin-panel-1-go-to-your-site-url-and-add-admin-at-the-end-2-enter-the-admin-password-shown-on-this-page-3-click-login-4-use-the-tabs-to-manage-products-orders-and-feedback-display-this-guide-in-a-clearly-visible-info-box-below-or-beside-the-login-form",
+      "title": "Add a step-by-step guide panel on the AdminLoginForm screen explaining how to access the admin panel: (1) Go to your site URL and add /admin at the end; (2) Enter the admin password shown on this page; (3) Click 'Login'; (4) Use the tabs to manage Products, Orders, and Feedback. Display this guide in a clearly visible info box below or beside the login form.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-the-instagram-handle-knotsnfolds-to-the-contact-footer-section-of-the-site-display-it-as-a-clearly-labelled-instagram-link-or-icon-alongside-the-existing-social-contact-details-in-both-the-contactsection-and-the-footer-components",
+      "title": "Add the Instagram handle @knotsnfolds._ to the contact/footer section of the site. Display it as a clearly labelled Instagram link or icon alongside the existing social/contact details in both the ContactSection and the Footer components.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-completely-rewrite-frontend-src-components-adminloginform-tsx-from-scratch-the-component-must-1-display-the-hardcoded-password-knots2024-prominently-in-a-visible-info-box-with-a-label-such-as-admin-password-knots2024-2-include-a-password-input-field-and-a-login-button-3-on-submit-compare-the-entered-value-against-the-hardcoded-string-knots2024-using-strict-equality-no-external-calls-no-async-logic-4-if-the-password-matches-call-the-onlogin-callback-prop-5-if-it-does-not-match-display-a-clear-inline-error-message-6-include-the-step-by-step-guide-panel-explaining-how-to-access-the-admin-panel",
+      "title": "Completely rewrite frontend/src/components/AdminLoginForm.tsx from scratch. The component must: (1) display the hardcoded password 'knots2024' prominently in a visible info box with a label such as 'Admin Password: knots2024'; (2) include a password input field and a 'Login' button; (3) on submit, compare the entered value against the hardcoded string 'knots2024' using strict equality — no external calls, no async logic; (4) if the password matches, call the onLogin callback prop; (5) if it does not match, display a clear inline error message; (6) include the step-by-step guide panel explaining how to access the admin panel.",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-completely-rewrite-frontend-src-pages-adminpage-tsx-from-scratch-the-component-must-1-on-mount-read-the-value-stored-at-key-adminauthenticated-in-sessionstorage-2-if-that-value-equals-true-render-the-admindashboard-component-directly-without-showing-the-login-form-3-otherwise-render-the-adminloginform-component-4-pass-an-onlogin-callback-to-adminloginform-that-sets-sessionstorage-key-adminauthenticated-to-true-and-triggers-a-re-render-to-show-admindashboard-5-admindashboard-s-logout-button-must-clear-adminauthenticated-from-sessionstorage-and-return-to-the-login-form",
+      "title": "Completely rewrite frontend/src/pages/AdminPage.tsx from scratch. The component must: (1) on mount, read the value stored at key 'adminAuthenticated' in sessionStorage; (2) if that value equals 'true', render the AdminDashboard component directly without showing the login form; (3) otherwise render the AdminLoginForm component; (4) pass an onLogin callback to AdminLoginForm that sets sessionStorage key 'adminAuthenticated' to 'true' and triggers a re-render to show AdminDashboard; (5) AdminDashboard's logout button must clear 'adminAuthenticated' from sessionStorage and return to the login form.",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-routing-in-frontend-src-app-tsx-so-that-the-admin-route-is-correctly-matched-and-rendered-when-the-url-contains-a-hash-based-path-combined-with-query-parameters-such-as-caffeineadmintoken-e-g-caffeineadmintoken-icp0-io-admin-the-adminpage-component-must-render-visibly-at-this-url-do-not-rely-on-a-clean-admin-path-alone-ensure-tanstack-router-s-hash-routing-configuration-handles-the-admin-segment-correctly-even-when-extra-query-parameters-are-present-in-the-hash-string",
+      "title": "Fix the routing in frontend/src/App.tsx so that the /admin route is correctly matched and rendered when the URL contains a hash-based path combined with query parameters such as caffeineAdminToken (e.g., /#/caffeineAdminToken=...icp0.io/admin). The AdminPage component must render visibly at this URL — do not rely on a clean /#/admin path alone. Ensure TanStack Router's hash routing configuration handles the /admin segment correctly even when extra query parameters are present in the hash string.",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-frontend-src-utils-urlparams-ts-or-create-a-utility-to-correctly-parse-the-admin-segment-from-hash-based-urls-that-contain-caffeineadmintoken-and-icp-domain-information-embedded-in-the-hash-string-the-router-or-app-entry-point-should-strip-or-ignore-the-caffeineadmintoken-prefix-so-that-the-route-segment-admin-is-cleanly-resolved",
+      "title": "Update frontend/src/utils/urlParams.ts (or create a utility) to correctly parse the /admin segment from hash-based URLs that contain caffeineAdminToken and ICP domain information embedded in the hash string. The router or App entry point should strip or ignore the caffeineAdminToken prefix so that the route segment /admin is cleanly resolved.",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-frontend-src-components-adminloginform-tsx-to-remove-all-visible-password-display-no-admin-password-label-or-info-box-showing-the-password-change-the-hardcoded-password-check-from-knots2024-to-namita6565-the-login-form-must-still-include-the-password-input-field-login-button-error-handling-and-step-by-step-guide-panel-only-the-visible-password-hint-text-must-be-removed",
+      "title": "Update frontend/src/components/AdminLoginForm.tsx to remove all visible password display (no 'Admin Password: ...' label or info box showing the password). Change the hardcoded password check from 'knots2024' to 'namita6565'. The login form must still include the password input field, login button, error handling, and step-by-step guide panel — only the visible password hint text must be removed.",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-add-product-functionality-in-the-admin-dashboard-investigate-and-resolve-why-submitting-the-productformmodal-does-not-create-save-a-new-product-ensure-the-createproduct-mutation-in-usequeries-ts-correctly-calls-the-backend-addproduct-or-equivalent-method-the-backend-motoko-actor-s-addproduct-function-is-correctly-defined-and-stores-the-product-and-the-productstab-productformmodal-correctly-invokes-the-mutation-and-refreshes-the-product-list-after-a-successful-creation",
+      "title": "Fix the Add Product functionality in the admin dashboard. Investigate and resolve why submitting the ProductFormModal does not create/save a new product. Ensure the createProduct mutation in useQueries.ts correctly calls the backend addProduct (or equivalent) method, the backend Motoko actor's addProduct function is correctly defined and stores the product, and the ProductsTab/ProductFormModal correctly invokes the mutation and refreshes the product list after a successful creation.",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -168,6 +260,18 @@
       "reqIds": [
         "REQ-12"
       ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-15",
+      "summary": "Add Instagram handle @knotsnfolds._ to the contact/footer section",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-16",
+      "summary": "Remove the password display from the admin login screen, change admin password to 'namita6565', and fix the Add Product functionality in the admin dashboard",
+      "reqIds": [],
       "status": "pending"
     }
   ],

@@ -50,9 +50,11 @@ export enum UserRole {
     guest = "guest"
 }
 export interface backendInterface {
-    addProduct(name: string, description: string, price: number, stockQuantity: bigint, imageUrl: string, category: string): Promise<bigint>;
     assignCallerUserRole(user: Principal, role: UserRole): Promise<void>;
     assignRole(user: Principal, role: UserRole): Promise<void>;
+    createProduct(name: string, description: string, price: number, stockQuantity: bigint, imageUrl: string, category: string): Promise<{
+        id: bigint;
+    }>;
     deleteContactMessage(msgId: bigint): Promise<void>;
     deleteProduct(productId: bigint): Promise<void>;
     getAllContactMessages(): Promise<Array<ContactMessage>>;

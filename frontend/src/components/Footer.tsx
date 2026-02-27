@@ -39,7 +39,7 @@ export default function Footer() {
             {/* Social Links */}
             <div className="flex gap-3">
               {[
-                { Icon: SiInstagram, label: 'Instagram', href: '#' },
+                { Icon: SiInstagram, label: 'Instagram', href: 'https://www.instagram.com/knotsnfolds._/' },
                 { Icon: SiFacebook, label: 'Facebook', href: '#' },
                 { Icon: SiPinterest, label: 'Pinterest', href: '#' },
               ].map(({ Icon, label, href }) => (
@@ -47,12 +47,24 @@ export default function Footer() {
                   key={label}
                   href={href}
                   aria-label={label}
+                  target={href !== '#' ? '_blank' : undefined}
+                  rel={href !== '#' ? 'noopener noreferrer' : undefined}
                   className="w-9 h-9 rounded-full bg-blush/10 hover:bg-rose/50 flex items-center justify-center text-blush/70 hover:text-blush transition-all duration-200"
                 >
                   <Icon className="w-4 h-4" />
                 </a>
               ))}
             </div>
+            {/* Instagram handle text */}
+            <a
+              href="https://www.instagram.com/knotsnfolds._/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 mt-3 font-sans text-xs text-blush/60 hover:text-rose-light transition-colors"
+            >
+              <SiInstagram className="w-3 h-3" />
+              @knotsnfolds._
+            </a>
           </div>
 
           {/* Quick Links */}

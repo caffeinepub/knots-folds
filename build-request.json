@@ -1,110 +1,61 @@
 {
   "kind": "build_request",
-  "title": "Interactive Order System, Admin Panel & Customer Feedback",
+  "title": "Remove password display, change password to namita6565, fix Add Product",
   "projectName": "Knots & Folds",
-  "priority": "normal",
+  "priority": "high",
   "requirements": [
     {
-      "id": "REQ-9",
-      "text": "Add an interactive order placement system to the website. On the ProductShowcase or a dedicated Order section, customers can fill out a form with: their name, phone number, delivery address, product selection (from available products), and quantity. On submission, the order is stored in the backend with a timestamp and a default status of 'Pending'.",
-      "target": "both",
+      "id": "REQ-22",
+      "text": "Update frontend/src/components/AdminLoginForm.tsx to remove all visible password display (no 'Admin Password: ...' label or info box showing the password). Change the hardcoded password check from 'knots2024' to 'namita6565'. The login form must still include the password input field, login button, error handling, and step-by-step guide panel — only the visible password hint text must be removed.",
+      "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-last"
         ],
         "quotes": [
-          "1 nd 2 nd",
-          "Interactive Order System — Customers can place orders with their name, phone, delivery address, product selection & quantity."
+          "remove the password display from it",
+          "change the password to namita6565"
         ]
       },
       "acceptanceCriteria": [
-        "An order form is accessible from the product showcase section (e.g., via 'Place Order' button on each ProductCard or a dedicated section).",
-        "The form collects: customer name, phone number, delivery address, product name/selection, and quantity.",
-        "Submitted orders are persisted in the backend with a unique ID, timestamp, and 'Pending' status.",
-        "The customer sees a success confirmation after placing an order.",
-        "The form validates required fields before submission."
+        "The AdminLoginForm screen does not show the admin password in any visible label, badge, or info box.",
+        "Entering 'namita6565' in the password field and clicking Login grants access to the AdminDashboard.",
+        "Entering any other password shows an inline error message.",
+        "The step-by-step guide panel (how to navigate to /admin, enter password, use tabs) remains visible on the login screen.",
+        "Session is persisted via sessionStorage key 'adminAuthenticated' set to 'true' on successful login."
       ]
     },
     {
-      "id": "REQ-10",
-      "text": "Build a password-protected admin panel accessible via a dedicated route (e.g., /admin). The admin must enter a hardcoded password to gain access. Once logged in, the admin can: (1) view, add, edit, and delete products (name, description, price, stock quantity, image URL/path, category); (2) view and update order statuses (Pending, Processing, Shipped, Delivered, Cancelled); (3) view all customer feedback messages submitted via the contact/feedback form.",
+      "id": "REQ-23",
+      "text": "Fix the Add Product functionality in the admin dashboard. Investigate and resolve why submitting the ProductFormModal does not create/save a new product. Ensure the createProduct mutation in useQueries.ts correctly calls the backend addProduct (or equivalent) method, the backend Motoko actor's addProduct function is correctly defined and stores the product, and the ProductsTab/ProductFormModal correctly invokes the mutation and refreshes the product list after a successful creation.",
       "target": "both",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-last"
         ],
         "quotes": [
-          "2 nd",
-          "Admin Panel (password-protected) — Secure login to add/edit products, update prices, manage stock levels, and view/manage incoming orders."
+          "i cant add products please fix it"
         ]
       },
       "acceptanceCriteria": [
-        "Navigating to /admin shows a password entry screen; correct password grants access, wrong password shows an error.",
-        "Admin panel has tabbed or sectioned navigation: Products, Orders, Feedback.",
-        "Products tab: displays list of all products with options to add a new product, edit existing product fields (name, description, price, stock, image, category), and delete a product.",
-        "Orders tab: lists all customer orders with customer details, product, quantity, timestamp, and a dropdown/button to update the order status.",
-        "Feedback tab: lists all customer feedback/contact messages with sender name, email, message, and timestamp.",
-        "Admin session persists for the browser session (e.g., via localStorage flag) so the admin does not need to re-enter the password on page refresh.",
-        "The admin panel is not linked from the public-facing navigation."
-      ]
-    },
-    {
-      "id": "REQ-11",
-      "text": "Replace the existing contact form's purpose with a dual-purpose Customer Feedback & Contact form. The form collects the customer's name, email, and a message/feedback. Submissions are stored in the backend and are viewable in the admin panel's Feedback tab. Display the contact email vanshita310@gmail.com prominently in the ContactSection alongside the form.",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "for 3 i would like my customers to leave feedbacks in form of messAGES",
-          "Customer Feedback/Messages — The contact form will let customers leave feedback messages (stored in the backend), and the admin panel will display all received messages.",
-          "Contact email — vanshita310@gmail.com added to the contact section."
-        ]
-      },
-      "acceptanceCriteria": [
-        "The ContactSection/ContactForm collects name, email, and message fields and labels the form as 'Leave Feedback' or 'Send Us a Message'.",
-        "Submitted feedback messages are stored in the backend with sender name, email, message text, and timestamp.",
-        "The ContactSection displays vanshita310@gmail.com as the business contact email.",
-        "All submitted feedback messages appear in the admin panel's Feedback tab.",
-        "The existing backend submitContactForm method (or an equivalent) is used or extended to store feedback."
-      ]
-    },
-    {
-      "id": "REQ-12",
-      "text": "Extend the backend Motoko actor to support the new data models and operations: (1) Products — stored with id, name, description, price, stockQuantity, imageUrl, category; CRUD operations; (2) Orders — stored with id, customerName, phone, address, productId, quantity, status, timestamp; create and list/update-status operations; (3) Feedback/Contact messages — already partially present, ensure the existing messages store is reused and admin list operation is available.",
-      "target": "backend",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "add products edit prices show stocks of products",
-          "orders viewable in admin panel",
-          "customers to leave feedbacks in form of messAGES"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Backend exposes addProduct, editProduct, deleteProduct, listProducts, getProduct methods.",
-        "Backend exposes placeOrder, listOrders, updateOrderStatus methods.",
-        "Backend exposes submitFeedback (or reuses submitContactForm), listFeedback methods.",
-        "All data structures persist across canister upgrades (stable variables).",
-        "Each method returns an appropriate result or error variant."
+        "Opening the 'Add Product' modal in the Products tab, filling in all required fields (name, description, price, stock, image URL, category), and submitting successfully saves the product.",
+        "The new product appears in the products table immediately after creation without a full page reload.",
+        "No console errors occur during product creation.",
+        "The backend correctly stores the new product and returns it in subsequent getProducts calls.",
+        "Editing and deleting existing products continue to work correctly."
       ]
     }
   ],
   "constraints": [
-    "Do not modify files under frontend/src/hooks/ or frontend/src/components/ui/.",
-    "The admin panel password can be hardcoded for now; no Internet Identity authentication is required for admin access.",
-    "All backend logic must remain in the single backend/main.mo actor.",
-    "Existing pink/purple color theme must be preserved across all new UI components."
+    "Do not change any files under frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or frontend/src/components/ui.",
+    "Do not break the existing sessionStorage-based admin authentication flow in AdminPage.tsx.",
+    "Do not revert or remove the hash-URL normalization logic in App.tsx that handles caffeineAdminToken."
   ],
   "nonGoals": [
-    "Payment processing or checkout integration.",
-    "Email notifications to vanshita310@gmail.com on new orders or messages.",
-    "Real-time order status updates via WebSockets.",
-    "Customer accounts or login for customers.",
-    "Changing the existing visual theme or color palette."
+    "Changing the visual theme or color palette.",
+    "Adding new admin panel features beyond fixing product creation.",
+    "Modifying the Orders or Feedback tabs.",
+    "Changing the routing logic in App.tsx or urlParams.ts."
   ],
   "imageRequirements": {
     "required": [],

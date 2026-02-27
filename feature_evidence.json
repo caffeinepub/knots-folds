@@ -2,12 +2,29 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-add-an-interactive-order-placement-system-to-the-website-on-the-productshowcase-or-a-dedicated-order-section-customers-can-fill-out-a-form-with-their-name-phone-number-delivery-address-product-selection-from-available-products-and-quantity-on-submission-the-order-is-stored-in-the-backend-with-a-timestamp-and-a-default-status-of-pending",
-      "featureTitle": "Add an interactive order placement system to the website. On the ProductShowcase or a dedicated Order section, customers can fill out a form with: their name, phone number, delivery address, product selection (from available products), and quantity. On submission, the order is stored in the backend with a timestamp and a default status of 'Pending'.",
+      "featureId": "feature-update-frontend-src-components-adminloginform-tsx-to-remove-all-visible-password-display-no-admin-password-label-or-info-box-showing-the-password-change-the-hardcoded-password-check-from-knots2024-to-namita6565-the-login-form-must-still-include-the-password-input-field-login-button-error-handling-and-step-by-step-guide-panel-only-the-visible-password-hint-text-must-be-removed",
+      "featureTitle": "Update frontend/src/components/AdminLoginForm.tsx to remove all visible password display (no 'Admin Password: ...' label or info box showing the password). Change the hardcoded password check from 'knots2024' to 'namita6565'. The login form must still include the password input field, login button, error handling, and step-by-step guide panel — only the visible password hint text must be removed.",
       "files": [
-        "frontend/src/components/OrderForm.tsx",
-        "frontend/src/components/ProductCard.tsx",
-        "frontend/src/components/ProductShowcase.tsx",
+        "frontend/src/components/AdminLoginForm.tsx"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-22"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-fix-the-add-product-functionality-in-the-admin-dashboard-investigate-and-resolve-why-submitting-the-productformmodal-does-not-create-save-a-new-product-ensure-the-createproduct-mutation-in-usequeries-ts-correctly-calls-the-backend-addproduct-or-equivalent-method-the-backend-motoko-actor-s-addproduct-function-is-correctly-defined-and-stores-the-product-and-the-productstab-productformmodal-correctly-invokes-the-mutation-and-refreshes-the-product-list-after-a-successful-creation",
+      "featureTitle": "Fix the Add Product functionality in the admin dashboard. Investigate and resolve why submitting the ProductFormModal does not create/save a new product. Ensure the createProduct mutation in useQueries.ts correctly calls the backend addProduct (or equivalent) method, the backend Motoko actor's addProduct function is correctly defined and stores the product, and the ProductsTab/ProductFormModal correctly invokes the mutation and refreshes the product list after a successful creation.",
+      "files": [
         "frontend/src/hooks/useQueries.ts"
       ],
       "components": [
@@ -20,56 +37,7 @@
         "authorization@4.0.0"
       ],
       "testIds": [
-        "REQ-9"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-build-a-password-protected-admin-panel-accessible-via-a-dedicated-route-e-g-admin-the-admin-must-enter-a-hardcoded-password-to-gain-access-once-logged-in-the-admin-can-1-view-add-edit-and-delete-products-name-description-price-stock-quantity-image-url-path-category-2-view-and-update-order-statuses-pending-processing-shipped-delivered-cancelled-3-view-all-customer-feedback-messages-submitted-via-the-contact-feedback-form",
-      "featureTitle": "Build a password-protected admin panel accessible via a dedicated route (e.g., /admin). The admin must enter a hardcoded password to gain access. Once logged in, the admin can: (1) view, add, edit, and delete products (name, description, price, stock quantity, image URL/path, category); (2) view and update order statuses (Pending, Processing, Shipped, Delivered, Cancelled); (3) view all customer feedback messages submitted via the contact/feedback form.",
-      "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/AdminDashboard.tsx",
-        "frontend/src/components/AdminLoginForm.tsx",
-        "frontend/src/components/FeedbackTab.tsx",
-        "frontend/src/components/OrdersTab.tsx",
-        "frontend/src/components/ProductFormModal.tsx",
-        "frontend/src/components/ProductsTab.tsx",
-        "frontend/src/hooks/useQueries.ts",
-        "frontend/src/pages/AdminPage.tsx"
-      ],
-      "components": [
-        "blob-storage@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "authorization@4.0.0"
-      ],
-      "testIds": [
-        "REQ-10"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-replace-the-existing-contact-form-s-purpose-with-a-dual-purpose-customer-feedback-contact-form-the-form-collects-the-customer-s-name-email-and-a-message-feedback-submissions-are-stored-in-the-backend-and-are-viewable-in-the-admin-panel-s-feedback-tab-display-the-contact-email-vanshita310-gmail-com-prominently-in-the-contactsection-alongside-the-form",
-      "featureTitle": "Replace the existing contact form's purpose with a dual-purpose Customer Feedback & Contact form. The form collects the customer's name, email, and a message/feedback. Submissions are stored in the backend and are viewable in the admin panel's Feedback tab. Display the contact email vanshita310@gmail.com prominently in the ContactSection alongside the form.",
-      "files": [
-        "frontend/src/components/ContactForm.tsx",
-        "frontend/src/components/ContactSection.tsx"
-      ],
-      "components": [
-        "blob-storage@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "authorization@4.0.0"
-      ],
-      "testIds": [
-        "REQ-11"
+        "REQ-23"
       ],
       "confidence": "high"
     }
