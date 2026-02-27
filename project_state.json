@@ -1,0 +1,178 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 7,
+  "summary": "A website for 'Knots & Folds', a woolen goods brand (toys, headbands, etc.) belonging to the user's grandmother. The site includes the user's own logo, showcases woolen products with a pink and purple color scheme, and now features an interactive order system, password-protected admin panel (for managing products/prices/stock/orders/feedback), a customer feedback/message form, and the contact email vanshita310@gmail.com.",
+  "architectural_notes": [
+    "Static website (HTML/CSS/JS) for a small handmade woolen goods brand",
+    "Brand name: Knots & Folds; product categories include woolen toys, headbands, and similar items",
+    "User has provided their own logo asset — do not use AI-generated logo; use uploaded logo file instead",
+    "Backend required for order management, product/stock CRUD, and customer feedback storage",
+    "Admin panel is password-protected; manages products, prices, stock, orders, and feedback messages"
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-create-a-warm-handcrafted-visual-theme-for-the-entire-site-using-earthy-tones-cream-warm-beige-terracotta-deep-forest-green-soft-serif-typography-and-cozy-texture-inspired-layouts-that-evokes-handmade-woolen-craftsmanship-apply-this-theme-consistently-across-all-pages-and-components",
+      "title": "Create a warm, handcrafted visual theme for the entire site — using earthy tones (cream, warm beige, terracotta, deep forest green), soft serif typography, and cozy texture-inspired layouts — that evokes handmade woolen craftsmanship. Apply this theme consistently across all pages and components.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-display-the-generated-knots-folds-logo-knots-folds-logo-dim-400x400-png-prominently-in-the-site-header-navbar-the-logo-should-link-back-to-the-homepage",
+      "title": "Display the generated Knots & Folds logo (knots-folds-logo.dim_400x400.png) prominently in the site header/navbar. The logo should link back to the homepage.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-a-hero-section-on-the-homepage-that-prominently-features-the-knots-folds-brand-name-a-warm-tagline-about-handmade-woolen-goods-and-the-hero-background-image-knots-folds-hero-dim-1440x600-png-include-a-call-to-action-button-scrolling-to-the-products-section",
+      "title": "Build a hero section on the homepage that prominently features the Knots & Folds brand name, a warm tagline about handmade woolen goods, and the hero background image (knots-folds-hero.dim_1440x600.png). Include a call-to-action button scrolling to the products section.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-product-showcase-section-that-displays-woolen-product-categories-including-toys-headbands-and-other-woolen-items-as-cards-with-product-illustration-images-category-name-and-a-short-description-use-the-generated-product-images-wool-toy-dim-400x400-png-wool-headband-dim-400x400-png-wool-accessories-dim-400x400-png",
+      "title": "Create a product showcase section that displays woolen product categories — including toys, headbands, and other woolen items — as cards with product illustration images, category name, and a short description. Use the generated product images (wool-toy.dim_400x400.png, wool-headband.dim_400x400.png, wool-accessories.dim_400x400.png).",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-about-us-section-that-tells-the-story-of-the-grandmother-s-handmade-woolen-business-knots-folds-with-a-warm-personal-narrative-about-craftsmanship-love-and-tradition-include-the-about-illustration-image-knots-folds-about-dim-600x400-png-alongside-the-text",
+      "title": "Add an 'About Us' section that tells the story of the grandmother's handmade woolen business — Knots & Folds — with a warm, personal narrative about craftsmanship, love, and tradition. Include the about illustration image (knots-folds-about.dim_600x400.png) alongside the text.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-contact-footer-section-with-a-simple-contact-form-name-email-message-fields-and-a-submit-button-and-business-social-contact-placeholder-details-the-backend-should-store-submitted-contact-messages",
+      "title": "Add a contact/footer section with a simple contact form (name, email, message fields and a submit button) and business social/contact placeholder details. The backend should store submitted contact messages.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-entire-site-s-color-palette-to-prominently-feature-pink-and-purple-tones-replace-the-current-earthy-terracotta-forest-green-palette-with-warm-pinks-rose-blush-dusty-pink-and-purples-lavender-mauve-deep-violet-as-the-primary-and-accent-colors-update-all-css-custom-properties-in-frontend-src-index-css-and-tailwind-config-tokens-accordingly-and-ensure-every-component-header-herosection-productshowcase-productcard-aboutsection-contactsection-contactform-footer-reflects-the-new-pink-and-purple-theme-consistently",
+      "title": "Update the entire site's color palette to prominently feature pink and purple tones. Replace the current earthy terracotta/forest-green palette with warm pinks (rose, blush, dusty pink) and purples (lavender, mauve, deep violet) as the primary and accent colors. Update all CSS custom properties in frontend/src/index.css and Tailwind config tokens accordingly, and ensure every component (Header, HeroSection, ProductShowcase, ProductCard, AboutSection, ContactSection, ContactForm, Footer) reflects the new pink-and-purple theme consistently.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-generated-knots-folds-logo-asset-with-the-exact-logo-image-provided-by-the-user-the-user-provided-logo-file-should-be-placed-at-frontend-public-assets-generated-knots-folds-logo-dim-400x400-png-overwriting-the-previously-generated-one-ensure-the-header-and-footer-components-continue-to-render-this-logo-using-the-same-existing-image-path-so-no-code-changes-are-needed-beyond-the-asset-swap",
+      "title": "Replace the generated Knots & Folds logo asset with the exact logo image provided by the user. The user-provided logo file should be placed at frontend/public/assets/generated/knots-folds-logo.dim_400x400.png, overwriting the previously generated one. Ensure the Header and Footer components continue to render this logo using the same existing image path so no code changes are needed beyond the asset swap.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-interactive-order-placement-system-to-the-website-on-the-productshowcase-or-a-dedicated-order-section-customers-can-fill-out-a-form-with-their-name-phone-number-delivery-address-product-selection-from-available-products-and-quantity-on-submission-the-order-is-stored-in-the-backend-with-a-timestamp-and-a-default-status-of-pending",
+      "title": "Add an interactive order placement system to the website. On the ProductShowcase or a dedicated Order section, customers can fill out a form with: their name, phone number, delivery address, product selection (from available products), and quantity. On submission, the order is stored in the backend with a timestamp and a default status of 'Pending'.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-a-password-protected-admin-panel-accessible-via-a-dedicated-route-e-g-admin-the-admin-must-enter-a-hardcoded-password-to-gain-access-once-logged-in-the-admin-can-1-view-add-edit-and-delete-products-name-description-price-stock-quantity-image-url-path-category-2-view-and-update-order-statuses-pending-processing-shipped-delivered-cancelled-3-view-all-customer-feedback-messages-submitted-via-the-contact-feedback-form",
+      "title": "Build a password-protected admin panel accessible via a dedicated route (e.g., /admin). The admin must enter a hardcoded password to gain access. Once logged in, the admin can: (1) view, add, edit, and delete products (name, description, price, stock quantity, image URL/path, category); (2) view and update order statuses (Pending, Processing, Shipped, Delivered, Cancelled); (3) view all customer feedback messages submitted via the contact/feedback form.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-existing-contact-form-s-purpose-with-a-dual-purpose-customer-feedback-contact-form-the-form-collects-the-customer-s-name-email-and-a-message-feedback-submissions-are-stored-in-the-backend-and-are-viewable-in-the-admin-panel-s-feedback-tab-display-the-contact-email-vanshita310-gmail-com-prominently-in-the-contactsection-alongside-the-form",
+      "title": "Replace the existing contact form's purpose with a dual-purpose Customer Feedback & Contact form. The form collects the customer's name, email, and a message/feedback. Submissions are stored in the backend and are viewable in the admin panel's Feedback tab. Display the contact email vanshita310@gmail.com prominently in the ContactSection alongside the form.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Homepage with hero section showcasing the Knots & Folds brand and woolen products",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Logo design/display for Knots & Folds brand",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Product showcase section for woolen items (toys, headbands, etc.)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "About/brand story section for the grandmother's business",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Contact section for the business",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Update color scheme to use more pink and purple tones throughout the site",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Replace generated logo with the exact logo image provided by the user",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Interactive order system — customers can place orders with name, phone, address, product & quantity; orders viewable in admin panel",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Password-protected admin panel to add/edit products, update prices, manage stock, view/manage orders and customer feedback messages",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Customer feedback/message form on the contact section (stored in backend, viewable in admin panel); add contact email vanshita310@gmail.com",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Extend the backend Motoko actor to support the new data models and operations: (1) Products — stored with id, name, description, price, stockQuantity, imageUrl, category; CRUD operations; (2) Orders — stored with id, customerName, phone, address, productId, quantity, status, timestamp; create and list/update-status operations; (3) Feedback/Contact messages — already partially present, ensure the existing messages store is reused and admin list operation is available.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Knots & Folds",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}
